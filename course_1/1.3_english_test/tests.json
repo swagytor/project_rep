@@ -1,0 +1,17 @@
+[
+   {
+      "question": "1) My name ___ Vova",
+      "answer_choices": ["1. am", "2. are", "3. is"],
+      "correct_answer": "is"
+   },
+   {
+      "question": "2) I ___ a coder",
+      "answer_choices": ["1. in", "2. am", "3. not"],
+      "correct_answer": "am"
+   },
+   {
+      "question": "3) I live ___ Moscow",
+      "answer_choices": ["1. in", "2. on", "3. under"],
+      "correct_answer": "in"
+   }
+]

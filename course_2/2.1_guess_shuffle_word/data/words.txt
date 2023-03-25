@@ -1,0 +1,10 @@
+python
+squirrel
+coding
+tomato
+cucumber
+ocean
+driver
+monitor
+table
+chair
