@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/SkyPro Projects.iml" filepath="$PROJECT_DIR$/.idea/SkyPro Projects.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/project_rep.iml" filepath="$PROJECT_DIR$/.idea/project_rep.iml" />
     </modules>
   </component>
 </project>

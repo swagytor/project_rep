@@ -1,9 +1,13 @@
 import functions
+import os.path
+
+PATH_TO_STUDENTS_DATA = os.path.join('data', 'students.json')
+PATH_TO_PROFESSIONS_DATA = os.path.join('data', 'professions.json')
 
 
 def main():
-    students_data = functions.load_students('data/students.json')
-    professions_data = functions.load_professions('data/professions.json')
+    students_data = functions.load_students(PATH_TO_STUDENTS_DATA)
+    professions_data = functions.load_professions(PATH_TO_PROFESSIONS_DATA)
 
     input_student_pk = input('Пожалуйста, введите номер студента: ')
     while not input_student_pk.isdigit():
@@ -19,7 +23,8 @@ def main():
 
     print(f'Студент {student_full_name}\n'
           f'Знает: {", ".join(student_skills)}\n'
-          f'Выберите специальность для оценки знаний студента {student_full_name}:')
+          f'Выберите специальность для оценки знаний студента {student_full_name}:\n'
+          f'')
 
     input_profession = input().title()
 
