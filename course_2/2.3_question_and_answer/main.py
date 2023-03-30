@@ -25,14 +25,14 @@ for level, question in enumerate(list_of_objects, 1):
     # выводим информацию вопроса с помощью метода экземпляра
     print(f'Вопрос {level}:')
     print(question.build_question())
-    user_input = input('Введите ваш ответ: ')
+    user_answer = input('Введите ваш ответ: ').lower().strip()
 
     # выставляем обновлённые значения у свойств экземпляра класса question
     setattr(question, 'is_asked', True)
-    setattr(question, 'user_answer', question.is_correct(user_input))
+    setattr(question, 'user_answer', question.is_correct(user_answer))
 
     # зависимости от правильности ответа, отправляем пользователю сообщение
-    if question.is_correct(user_input):
+    if question.is_correct(user_answer):
         print(question.build_positive_feedback())
     else:
         print(question.build_negative_feedback())
