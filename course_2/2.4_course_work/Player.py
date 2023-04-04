@@ -6,9 +6,6 @@ class Player:
         self.user_name = user_name
         self.added_words = set()
 
-    def __str__(self):
-        return f'Player: {self.user_name}, {self.added_words}'
-
     def __repr__(self):
         return f"Player{self.user_name, self.added_words}"
 

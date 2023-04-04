@@ -34,16 +34,16 @@ while game.acceptable_words != player.added_words:
     print(f'\nСлово {game.original_word.upper()}\n'
           f'Осталось отгадать: {words_left}')
 
-    # делаем проверку на количество букв в введённом слове
-    while True:
-        guessed_word = input('Введите слово: ').strip().lower()
-        if len(guessed_word) >= len(shortest_word):
-            break
-        print('Слишком короткое слово!')
+    guessed_word = input('Введите слово: ').strip().lower()
 
     if guessed_word in STOPWORDS:
         break
-    if not game.is_exist(guessed_word):
+
+    # делаем проверку на количество букв в введённом слове
+    elif len(guessed_word) < len(shortest_word):
+        print('Слишком короткое слово!')
+
+    elif not game.is_exist(guessed_word):
         print('Данного слова нет в списке загаданных')
         continue
     if player.is_added(guessed_word):
