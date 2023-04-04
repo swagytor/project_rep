@@ -1,4 +1,4 @@
-import Player
+from player import Player
 import utils
 
 # объявляем константы: адрес JSON-BIN и стоп-слова
@@ -12,7 +12,7 @@ print('Привет!\n'
 user_name = utils.get_valid_name()
 
 # объявляем объект player класса Player
-player = Player.Player(user_name)
+player = Player(user_name)
 
 print(f'Приятно познакомиться, {player.user_name}!\n'
       'Давай начнём игру!')
