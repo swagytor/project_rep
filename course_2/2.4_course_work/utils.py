@@ -15,6 +15,7 @@ def load_random_word(path: str) -> BasicWord:
     original_word, acceptable_words = choice(response).values()
 
     game = BasicWord(original_word, set(acceptable_words))
+
     return game
 
 

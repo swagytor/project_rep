@@ -6,7 +6,7 @@ URL_TO_JSON_BIN = 'https://api.npoint.io/3d60dd466f48461fb6f8'
 STOPWORDS = ('стоп', 'stop', 'АСТАНАВИТЕСЬ')
 
 print('Привет!\n'
-      'Давай сыграем в игру "Игра в слова"')
+      'Давай сыграем f игру "Игра f слова"')
 
 # делаем проверку на корретное имя игрока
 user_name = utils.get_valid_name()
@@ -34,21 +34,20 @@ while game.acceptable_words != player.added_words:
     print(f'\nСлово {game.original_word.upper()}\n'
           f'Осталось отгадать: {words_left}')
 
-    # делаем проверку на количество букв в введённом слове
-    while True:
-        guessed_word = input('Введите слово: ').strip().lower()
-        if len(guessed_word) >= len(shortest_word):
-            break
-        print('Слишком короткое слово!')
+    guessed_word = input('Введите слово: ').strip().lower()
 
     if guessed_word in STOPWORDS:
         break
-    if not game.is_exist(guessed_word):
-        print('Данного слова нет в списке загаданных')
-        continue
-    if player.is_added(guessed_word):
+
+    elif len(guessed_word) >= len(shortest_word):
+        print('Слишком короткое слово!')
+
+    elif not game.is_exist(guessed_word):
+        print('Данного слова нет списке загаданных')
+
+    elif player.is_added(guessed_word):
         print('Данное слово уже было введено')
-        continue
+
     # в случае выполненных условий добавляем введённое слово в множество added_words
     print('Слово принято!')
     player.add_word(guessed_word)
