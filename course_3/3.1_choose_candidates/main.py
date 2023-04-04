@@ -1,1 +1,0 @@
-utils.say_hello()
