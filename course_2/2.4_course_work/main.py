@@ -46,7 +46,7 @@ while game.acceptable_words != player.added_words:
     elif not game.is_exist(guessed_word):
         print('Данного слова нет в списке загаданных')
         continue
-    if player.is_added(guessed_word):
+    elif player.is_added(guessed_word):
         print('Данное слово уже было введено')
         continue
     # в случае выполненных условий добавляем введённое слово в множество added_words
