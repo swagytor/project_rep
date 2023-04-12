@@ -34,7 +34,7 @@ def get_valid_name() -> str:
                            'И длина имени не должна превышать 10 символов\n')
 
 
-def get_shortest_length(word_list: list):
+def get_shortest_length(word_list: set):
     """
     Возвращаем самое короткое загаданное слово списка
     :param word_list: список загаданных слов

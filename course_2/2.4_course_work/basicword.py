@@ -4,7 +4,7 @@ from dataclasses import dataclass
 @dataclass
 class BasicWord:
     original_word: str
-    acceptable_words: list
+    acceptable_words: set
 
     def is_exist(self, word: str) -> bool:
         """
