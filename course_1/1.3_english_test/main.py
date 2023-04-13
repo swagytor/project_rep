@@ -1,24 +1,29 @@
 import functions
+import constant
+from validators.validator import get_valid_name
 
 
 def main():
-    # объявляем имя пользователя с помощью функции greetings()
-    user_name = functions.greetings()
+    # выводим приветствие и просим пользователя представиться
+    print('Привет! Предлагаю проверить свои знания английского!')
+
+    # объявляем имя пользователя с помощью функции get_valid_name()
+    user_name = get_valid_name()
     print(f'Приятно познакомиться, {user_name}!')
 
     # просим пользователя набрать команду "ready"
-    user_command = input('Набери "ready", чтобы начать тестирование! ')
+    user_command = input('Набери "ready", чтобы начать тестирование! ').lower().strip()
 
     # если пользователь набрал команду "ready", начинаем тестирование
-    if user_command.lower() == 'ready':
+    if user_command == 'ready':
 
-        tests_list = functions.get_quiz_list('tests.json')
+        list_of_question = functions.get_quiz_list(constant.JSON_URL)
 
         # объявляем общее количество баллов и верных ответов с помощью функции testing()
-        user_score, correct_count = functions.testing(tests_list)
+        user_score, correct_count = functions.testing(list_of_question)
 
         # вычисляем процент правильных ответов
-        percent = int(user_score / (len(tests_list) * 3) * 100)
+        percent = int(user_score / (len(list_of_question) * 3) * 100)
 
         # объявляем окончание тестирования и его результаты
         print(
