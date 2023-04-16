@@ -8,7 +8,7 @@ STOPWORDS = ('стоп', 'stop', 'АСТАНАВИТЕСЬ')
 print('Привет!\n'
       'Давай сыграем в игру "Игра в слова"')
 
-# делаем проверку на корретное имя игрока
+# делаем проверку на корректное имя игрока
 user_name = utils.get_valid_name()
 
 # объявляем объект player класса Player
@@ -18,6 +18,7 @@ print(f'Приятно познакомиться, {player.user_name}!\n'
       'Давай начнём игру!')
 
 print()
+
 # загружаем одно случайное слово из JSON-BIN
 game = utils.load_random_word(URL_TO_JSON_BIN)
 # вычисляем количество загаданных слов
@@ -39,20 +40,20 @@ while game.acceptable_words != player.added_words:
     if guessed_word in STOPWORDS:
         break
 
-    # делаем проверку на количество букв в введённом слове
     elif len(guessed_word) < len(shortest_word):
-        print('Слишком короткое слово!')
+        print('\033[31m' + 'Слишком короткое слово!' + '\033[39m')
 
     elif not game.is_exist(guessed_word):
-        print('Данного слова нет в списке загаданных')
-        continue
+        print('\033[31m' + 'Данного слова нет списке загаданных!' + '\033[39m')
+
     elif player.is_added(guessed_word):
-        print('Данное слово уже было введено')
-        continue
+        print('\033[31m' + 'Данное слово уже было введено!' + '\033[39m')
+
     # в случае выполненных условий добавляем введённое слово в множество added_words
-    print('Слово принято!')
-    player.add_word(guessed_word)
-    words_left -= 1
+    else:
+        print('Слово принято!')
+        player.add_word(guessed_word)
+        words_left -= 1
 
 print()
 

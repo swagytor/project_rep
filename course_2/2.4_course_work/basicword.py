@@ -1,13 +1,10 @@
-class BasicWord:
-    """
-    Класс основного слова
-    """
-    def __init__(self, original_word, acceptable_words):
-        self.original_word = original_word
-        self.acceptable_words = acceptable_words
+from dataclasses import dataclass
 
-    def __repr__(self):
-        return f"BasicWord{self.original_word.title(), self.acceptable_words}"
+
+@dataclass
+class BasicWord:
+    original_word: str
+    acceptable_words: set
 
     def is_exist(self, word: str) -> bool:
         """

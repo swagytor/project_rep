@@ -2,7 +2,7 @@ import utils
 from question import Question
 from random import shuffle
 
-# объявляем константу, которая ссылается на внешний ресурс c вопросами
+# объявляем константу, которая ссылается на внешний ресурс с вопросами
 URL_TO_JSON_BIN = 'https://api.npoint.io/384b56bc7ab906f053b6'
 
 

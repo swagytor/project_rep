@@ -1,73 +1,41 @@
-def resulting_levels(correct):
-    """Выводит ранг пользователя,
-    в зависимости от количества правильных ответов
-"""
-    levels = {
-        0: "Нулевой",
-        1: "Так себе",
-        2: "Можно лучше",
-        3: "Норм",
-        4: "Хорошо",
-        5: "Отлично",
-    }
-
-    return levels[correct]
+import requests
+from python_tools.dynamic_border import dynamic_border
 
 
-def select_mode():
-    """Возвращает словарь слов и ответов,
-    в зависимости от выбранного уровня сложности
-"""
-    modes = {
-        'easy_mode': {
-            'cow': 'корова',
-            'morning': 'утро',
-            'sun': 'солнце',
-            'friend': 'друг',
-            'river': 'река'
-        },
-        'medium_mode': {
-            'evening': 'вечер',
-            'tale': 'рассказ',
-            'guest': 'гость',
-            'purchase': 'покупка',
-            'justice': 'справедливость'
-        },
-        'hard_mode': {
-            'opportunity': 'возможность',
-            'devotion': 'преданность',
-            'fortune': 'судьба',
-            'addiction': 'зависимость',
-            'amateur': 'любитель'
-        }
-    }
-    # выводим доступные режимы сложности в рамках, с помощью функции dynamic_border()
-    print('Есть три режима сложности')
-    dynamic_border('EASY')
-    dynamic_border('MEDIUM')
-    dynamic_border('HARD')
+def get_data(json_url):
+    response = requests.get(json_url).json()
 
+    return response
+
+
+def validate_selected_mode(modes):
     # просим пользователя ввести уровень сложности
-    user_select = input('Выберите уровень сложности: ').lower() + '_mode'
+    user_select = input('Выберите уровень сложности: ').lower().strip()
 
     # если введённого уровня сложности нет в словаре modes
     while user_select not in modes:
-        print('Нет такого уровня сложности\nПожалуйста, повторите попытку')
-        user_select = input('Выберите уровень сложности: ').lower()
+        print('Нет такого уровня сложности\n'
+              'Пожалуйста, повторите попытку')
+        user_select = input('Выберите уровень сложности: ').lower().strip()
 
-    print(f'Выбран уровень сложности "{user_select}", мы предложим 5 слов, подберите перевод.')
-
-    # после успешного выбора сложности, возвращаем словарь слов и ответов
-    return modes[user_select]
+    return user_select
 
 
-def dynamic_border(sentence):
-    """Выводит уровни сложностей в рамках"""
-    width = 22
+def select_mode(modes):
+    """Возвращает словарь слов и ответов,
+    в зависимости от выбранного уровня сложности
+"""
+    # выводим доступные режимы сложности в рамках, с помощью функции dynamic_border()
+    print(f'Есть {len(modes)} режима сложности:')
+    for mode in modes:
+        dynamic_border(mode.upper())
 
-    print('+-' + '-' * width + '-+')
-    print('| {0:^{1}} |'.format(sentence, width))
-    print('+-' + '-' * width + '-+')
+    mode_select = validate_selected_mode(modes)
+
+    print(f'Выбран уровень сложности "{mode_select}", мы предложим 5 слов, подберите к ним перевод.')
+
+    # после успешного выбора сложности, возвращаем словарь слов и переводов
+    return modes[mode_select]
 
 
 def testing(words_dict):
@@ -75,15 +43,13 @@ def testing(words_dict):
     и возвращает количество правильных ответов
 """
     # объявляем счётчики текущего уровня, правильных ответов
-    level_count = 1
     correct = 0
+    level_count = 1
 
     # создаём словарь, куда будем заносить ответы пользователя
     answers = {}
 
-    input('Нажмите Enter, чтобы начать')
-
-    print()
+    input('Нажмите Enter, чтобы начать\n')
 
     # совершаем итерацию по словарю
     for word, translate in words_dict.items():
@@ -93,7 +59,7 @@ def testing(words_dict):
         # выводим слово на английском и информацию по правильному ответу
         print(f'{word}, {len(translate)} букв, начинается на {translate[0]}')
 
-        user_answer = input('Введите перевод: ').lower()
+        user_answer = input('Введите перевод: ').lower().strip()
 
         # в случае правильного ответа прибавляем к счётчику correct
         if user_answer == translate:
@@ -108,10 +74,8 @@ def testing(words_dict):
         print()
 
         # прибавляем к счётчику текущего уровня
-        input('Нажмите Enter, чтобы перейти на следующий уровень')
+        input('Нажмите Enter, чтобы перейти на следующий уровень\n')
         level_count += 1
-
-        print()
 
     # после окончания итераций выводим верно и неверно отвеченные слова
     print('Правильно отвечены слова:')
